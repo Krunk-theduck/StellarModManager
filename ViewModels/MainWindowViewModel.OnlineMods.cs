@@ -127,5 +127,20 @@ public partial class MainWindowViewModel
 
 
         RefreshUpdateStatuses();
+
+        await Task.WhenAll(OnlineMods.Select(repositoryService.LoadChangelogAsync));
+        SortByDownloads();
+    }
+
+    private void SortByDownloads()
+    {
+        var sorted = OnlineMods.OrderByDescending(m => m.Downloads).ToList();
+
+        for (int i = 0; i < sorted.Count; i++)
+        {
+            int current = OnlineMods.IndexOf(sorted[i]);
+            if (current != i)
+                OnlineMods.Move(current, i);
+        }
     }
 }

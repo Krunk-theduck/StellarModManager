@@ -93,6 +93,8 @@ public class ModRepositoryService
             var releases = await httpClient.GetFromJsonAsync<List<GitHubRelease>>(
                 $"https://api.github.com/repos/{mod.RepoOwner}/{mod.RepoName}/releases?per_page=30") ?? new();
 
+            mod.Downloads = releases.Sum(release => release.assets?.Sum(asset => asset.download_count) ?? 0);
+
             foreach (var release in releases)
             {
                 if (Version.TryParse(release.tag_name.TrimStart('v'), out var version))
