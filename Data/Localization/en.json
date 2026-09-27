@@ -35,5 +35,8 @@
   "ConfirmRemoveButton": "Remove",
   "UpdateAvailableTitle": "Update Available",
   "Later": "Later",
-  "Download": "Download"
+  "Download": "Download",
+  "DetectedGameInstalls": "Detected Installations",
+  "ChooseGameFolderManually": "Select manually",
+  "SelectFolder": "Select"
 }
