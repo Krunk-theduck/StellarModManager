@@ -5,12 +5,15 @@ using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Input;
 using StellarModManager.Models;
 using StellarModManager.Services;
+using System.Collections.Generic;
 using System.Threading.Tasks;
 
 namespace StellarModManager.ViewModels;
 
 public partial class MainWindowViewModel
 {
+    public IReadOnlyList<GameInstallationInfo> DetectedGameInstalls { get; } = [.. GameLocatorService.Locate()];
+
     [ObservableProperty]
     private bool setupRequired = true;
 
@@ -49,6 +52,20 @@ public partial class MainWindowViewModel
         };
 
         return result == MelonLoaderStatus.Installed;
+    }
+
+    [RelayCommand]
+    private void SelectSuggestedFolder(GameInstallationInfo info)
+    {
+        var path = info.Directory.FullName;
+        GamePath = path;
+
+        bool valid = CheckMelonLoader(path);
+        IsMelonLoaderValid = valid;
+
+        if (!valid) return;
+
+        settingsService.SaveGameProfile(new GameProfile { GamePath = path });
     }
 
     [RelayCommand]

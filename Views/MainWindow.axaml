@@ -5,12 +5,12 @@
         xmlns:loc="using:StellarModManager.Services"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-        mc:Ignorable="d" d:DesignWidth="900" d:DesignHeight="600"
+        mc:Ignorable="d" d:DesignWidth="900" d:DesignHeight="800"
         x:Class="StellarModManager.Views.MainWindow"
         x:DataType="vm:MainWindowViewModel"
         Icon="/Assets/icon.ico"
         Title="StellarModManager"
-        Width="900" Height="600">
+        Width="900" Height="800">
 
     <Window.Background>
         <LinearGradientBrush StartPoint="0%,0%" EndPoint="100%,100%">
