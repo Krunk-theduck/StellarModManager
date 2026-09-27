@@ -52,6 +52,10 @@ public partial class OnlineModInfo : ModInfo
 
     [JsonIgnore]
     [ObservableProperty]
+    private long downloads;
+
+    [JsonIgnore]
+    [ObservableProperty]
     private bool isInstalling;
 
     [JsonIgnore]

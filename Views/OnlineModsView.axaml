@@ -49,6 +49,9 @@
                                                 <TextBlock Text="{Binding Version}" FontSize="12"
                                                     Foreground="{DynamicResource Theme.AccentEndBrush}"
                                                     FontWeight="SemiBold" VerticalAlignment="Center" />
+                                                <TextBlock Text="{Binding Downloads, StringFormat='{}{0:N0} downloads'}" FontSize="12"
+                                                    Foreground="{DynamicResource Theme.TextSecondaryBrush}"
+                                                    VerticalAlignment="Center" />
                                             </StackPanel>
                                             <TextBlock Text="{Binding Author}" FontSize="13"
                                                 Foreground="{DynamicResource Theme.TextSecondaryBrush}" />
