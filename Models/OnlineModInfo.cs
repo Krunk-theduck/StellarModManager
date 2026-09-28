@@ -1,5 +1,6 @@
 ﻿using CommunityToolkit.Mvvm.ComponentModel;
 using StellarModManager.Services;
+using System;
 using System.Text.Json.Serialization;
 using System.Collections.Generic; // Lists
 using Avalonia.Media.Imaging;
@@ -52,7 +53,28 @@ public partial class OnlineModInfo : ModInfo
 
     [JsonIgnore]
     [ObservableProperty]
+    [NotifyPropertyChangedFor(nameof(StatsText))]
     private long downloads;
+
+    [JsonIgnore]
+    [ObservableProperty]
+    [NotifyPropertyChangedFor(nameof(StatsText))]
+    private DateTime? lastUpdated;
+
+    [JsonIgnore]
+    public string StatsText => LastUpdated is DateTime updated ? $"{Downloads:N0} downloads · Updated {Ago(updated)}" : "";
+
+    private static string Ago(DateTime updated)
+    {
+        int days = (int)(DateTime.UtcNow - updated.ToUniversalTime()).TotalDays;
+        return days switch
+        {
+            < 1 => "today",
+            1 => "yesterday",
+            < 30 => $"{days} days ago",
+            _ => updated.ToLocalTime().ToString("MMM d, yyyy")
+        };
+    }
 
     [JsonIgnore]
     [ObservableProperty]

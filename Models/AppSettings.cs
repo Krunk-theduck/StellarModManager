@@ -9,4 +9,5 @@ public class AppSettings
     public bool AutoCheckForModUpdates { get; set; } = true;
     public bool AutoCheckForAppUpdates { get; set; } = true;
     public string Theme { get; set; } = "Purple";
+    public int ModSort { get; set; }
 }

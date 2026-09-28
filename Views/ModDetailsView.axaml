@@ -27,6 +27,8 @@
                                     Foreground="{DynamicResource Theme.AccentEndBrush}" />
                                 <TextBlock Text="{Binding SelectedMod.Author}" FontSize="15"
                                     Foreground="{DynamicResource Theme.TextSecondaryBrush}" />
+                                <TextBlock Text="{Binding SelectedMod.StatsText}" FontSize="15"
+                                    Foreground="{DynamicResource Theme.TextSecondaryBrush}" />
                             </StackPanel>
                         </StackPanel>
 

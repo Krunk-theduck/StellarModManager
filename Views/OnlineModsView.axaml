@@ -5,15 +5,23 @@
     x:Class="StellarModManager.Views.OnlineModsView"
     x:DataType="vm:MainWindowViewModel">
     <Grid RowDefinitions="Auto,*" Margin="0,16,0,0">
-        <Grid Grid.Row="0" Margin="0,0,0,14" ColumnDefinitions="*,Auto">
+        <Grid Grid.Row="0" Margin="0,0,0,14" ColumnDefinitions="*,Auto,Auto">
             <TextBlock
                 Grid.Column="0"
                 Text="{Binding Source={x:Static loc:LocalizationService.Instance}, Path=[OnlineModsDescription]}"
                 FontSize="13"
                 Foreground="{DynamicResource Theme.TextSecondaryBrush}"
                 VerticalAlignment="Center" />
-            <Button
+            <ComboBox
                 Grid.Column="1"
+                Margin="0,0,8,0"
+                SelectedIndex="{Binding SortIndex}">
+                <ComboBoxItem Content="Most downloaded" />
+                <ComboBoxItem Content="Recently updated" />
+                <ComboBoxItem Content="Name" />
+            </ComboBox>
+            <Button
+                Grid.Column="2"
                 Classes="secondary"
                 Content="{Binding Source={x:Static loc:LocalizationService.Instance}, Path=[Refresh]}"
                 Command="{Binding RefreshModsCommand}" />
@@ -49,7 +57,7 @@
                                                 <TextBlock Text="{Binding Version}" FontSize="12"
                                                     Foreground="{DynamicResource Theme.AccentEndBrush}"
                                                     FontWeight="SemiBold" VerticalAlignment="Center" />
-                                                <TextBlock Text="{Binding Downloads, StringFormat='{}{0:N0} downloads'}" FontSize="12"
+                                                <TextBlock Text="{Binding StatsText}" FontSize="12"
                                                     Foreground="{DynamicResource Theme.TextSecondaryBrush}"
                                                     VerticalAlignment="Center" />
                                             </StackPanel>

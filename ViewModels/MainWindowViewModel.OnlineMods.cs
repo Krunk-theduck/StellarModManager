@@ -1,4 +1,5 @@
-﻿using CommunityToolkit.Mvvm.Input;
+﻿using CommunityToolkit.Mvvm.ComponentModel;
+using CommunityToolkit.Mvvm.Input;
 using StellarModManager.Models;
 using StellarModManager.Services;
 using System;
@@ -15,6 +16,9 @@ public partial class MainWindowViewModel
     public ObservableCollection<OnlineModInfo> OnlineMods { get; } = new();
     private readonly ModRepositoryService repositoryService = new();
     private readonly ModInstallerService installerService = new();
+
+    [ObservableProperty]
+    private int sortIndex;
 
     [RelayCommand]
     private async Task InstallMod(OnlineModInfo mod)
@@ -129,12 +133,26 @@ public partial class MainWindowViewModel
         RefreshUpdateStatuses();
 
         await Task.WhenAll(OnlineMods.Select(repositoryService.LoadChangelogAsync));
-        SortByDownloads();
+        SortMods();
     }
 
-    private void SortByDownloads()
+    partial void OnSortIndexChanged(int value)
     {
-        var sorted = OnlineMods.OrderByDescending(m => m.Downloads).ToList();
+        SortMods();
+
+        var settings = settingsService.LoadAppSettings();
+        settings.ModSort = value;
+        settingsService.SaveAppSettings(settings);
+    }
+
+    private void SortMods()
+    {
+        var sorted = SortIndex switch
+        {
+            1 => OnlineMods.OrderByDescending(m => m.LastUpdated).ToList(),
+            2 => OnlineMods.OrderBy(m => m.Name, StringComparer.OrdinalIgnoreCase).ToList(),
+            _ => OnlineMods.OrderByDescending(m => m.Downloads).ToList()
+        };
 
         for (int i = 0; i < sorted.Count; i++)
         {

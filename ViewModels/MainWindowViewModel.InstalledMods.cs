@@ -46,6 +46,7 @@ public partial class MainWindowViewModel
         foreach (var installed in InstalledMods)
         {
             var online = OnlineMods.FirstOrDefault(m => m.Id == installed.Id);
+            installed.Online = online;
 
             if (online != null &&
                 Version.TryParse(online.Version, out var onlineV) &&

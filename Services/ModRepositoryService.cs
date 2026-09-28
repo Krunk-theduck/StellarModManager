@@ -6,6 +6,7 @@ using System.Net.Http;
 using System.Net.Http.Json;
 using System.Text.Json;
 using System.Text.Json.Serialization;
+using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 using Avalonia.Media.Imaging;
 using System.Linq; // thumbnailss
@@ -39,8 +40,19 @@ public class ModRepositoryService
         return mods.OfType<OnlineModInfo>().ToList();
     }
 
+    private static readonly Regex GitHubName = new(@"^[A-Za-z0-9][A-Za-z0-9._-]*$");
+    private static readonly Regex RepoPath = new(@"^([A-Za-z0-9_-][A-Za-z0-9._-]*(/[A-Za-z0-9_-][A-Za-z0-9._-]*)*)?$");
+
+    private static bool IsSafe(ModRegistryEntry entry)
+    {
+        return GitHubName.IsMatch(entry.Author) && GitHubName.IsMatch(entry.Repo) && RepoPath.IsMatch(entry.MetadataPath);
+    }
+
     private async Task<OnlineModInfo?> LoadModAsync(ModRegistryEntry entry)
     {
+        if (!IsSafe(entry))
+            return null;
+
         try
         {
             string metadataUrl = $"https://raw.githubusercontent.com/{entry.Author}/{entry.Repo}/main/{entry.MetadataPath}/mod.json";
@@ -94,6 +106,7 @@ public class ModRepositoryService
                 $"https://api.github.com/repos/{mod.RepoOwner}/{mod.RepoName}/releases?per_page=30") ?? new();
 
             mod.Downloads = releases.Sum(release => release.assets?.Sum(asset => asset.download_count) ?? 0);
+            mod.LastUpdated = releases.Max(release => release.published_at);
 
             foreach (var release in releases)
             {

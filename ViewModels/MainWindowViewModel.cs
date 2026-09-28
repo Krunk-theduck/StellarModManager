@@ -26,6 +26,7 @@ public partial class MainWindowViewModel : ViewModelBase
         confirmBeforeRemove = appSettings.ConfirmBeforeRemove;
         autoCheckForModUpdates = appSettings.AutoCheckForModUpdates;
         autoCheckForAppUpdates = appSettings.AutoCheckForAppUpdates;
+        sortIndex = appSettings.ModSort;
 
         themeService.ApplyTheme(themeService.LoadTheme(selectedTheme));
 

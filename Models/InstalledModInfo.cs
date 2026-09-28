@@ -39,4 +39,8 @@ public partial class InstalledModInfo : ModInfo
     [JsonIgnore]
     [ObservableProperty]
     private string? updateNotes;
+
+    [JsonIgnore]
+    [ObservableProperty]
+    private OnlineModInfo? online;
 }

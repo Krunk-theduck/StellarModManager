@@ -25,6 +25,7 @@
                                         <StackPanel Orientation="Horizontal" Spacing="8">
                                             <TextBlock Text="{Binding Name}" FontSize="16" FontWeight="Bold" Foreground="{DynamicResource Theme.TextPrimaryBrush}"/>
                                             <TextBlock Text="{Binding Version}" FontSize="12" Foreground="{DynamicResource Theme.AccentEndBrush}" FontWeight="SemiBold" VerticalAlignment="Center"/>
+                                            <TextBlock Text="{Binding Online.StatsText}" FontSize="12" Foreground="{DynamicResource Theme.TextSecondaryBrush}" VerticalAlignment="Center"/>
                                         </StackPanel>
                                         <TextBlock
                                             IsVisible="{Binding IsUpdateAvailable}"

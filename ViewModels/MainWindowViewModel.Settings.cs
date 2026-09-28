@@ -87,7 +87,8 @@ public partial class MainWindowViewModel
             Theme = SelectedTheme,
             ConfirmBeforeRemove = ConfirmBeforeRemove,
             AutoCheckForModUpdates = AutoCheckForModUpdates,
-            AutoCheckForAppUpdates = AutoCheckForAppUpdates
+            AutoCheckForAppUpdates = AutoCheckForAppUpdates,
+            ModSort = SortIndex
         });
     }
 
