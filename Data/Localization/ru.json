@@ -35,5 +35,8 @@
   "ConfirmRemoveButton": "Удалить",
   "UpdateAvailableTitle": "Доступно обновление",
   "Later": "Позже",
-  "Download": "Скачать"
+  "Download": "Скачать",
+  "DetectedGameInstalls": "Обнаруженные установки",
+  "ChooseGameFolderManually": "Выбрать вручную",
+  "SelectFolder": "Выбрать"
 }

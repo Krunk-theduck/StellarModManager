@@ -58,43 +58,85 @@
                         Margin="0,0,0,10"/>
                 </StackPanel>
 
-                <Button
-                    Classes="primary"
-                    Content="{Binding Source={x:Static loc:LocalizationService.Instance}, Path=[ChooseGameFolder]}"
-                    Command="{Binding SelectGameFolderCommand}"
-                    HorizontalAlignment="Stretch"
-                    HorizontalContentAlignment="Center"/>
 
-                <Border
-                    IsVisible="{Binding MelonLoaderStatusText, Converter={x:Static StringConverters.IsNotNullOrEmpty}}"
-                    Background="#12000000"
-                    CornerRadius="10"
-                    Padding="14,10">
-                    <StackPanel Spacing="4">
-                        <TextBlock
-                            Text="{Binding MelonLoaderStatusText}"
-                            FontSize="13"
-                            FontWeight="SemiBold"
-                            TextAlignment="Center"
-                            Foreground="{DynamicResource Theme.TextPrimaryBrush}"/>
+                <StackPanel Spacing="8">
+                    <Label
+                        Content="{Binding Source={x:Static loc:LocalizationService.Instance}, Path=[DetectedGameInstalls]}"
+                        Foreground="{DynamicResource Theme.TextPrimaryBrush}"/>
 
-                        <TextBlock
-                            Text="{Binding GamePath}"
-                            FontSize="12"
-                            TextWrapping="Wrap"
-                            TextAlignment="Center"
-                            Foreground="{DynamicResource Theme.TextSecondaryBrush}"/>
-                    </StackPanel>
-                </Border>
+                    <ItemsControl ItemsSource="{Binding DetectedGameInstalls}" >
+                        <ItemsControl.ItemsPanel>
+                            <ItemsPanelTemplate>
+                                <StackPanel Orientation="Vertical" Spacing="8" />
+                            </ItemsPanelTemplate>
+                        </ItemsControl.ItemsPanel>
+                        <ItemsControl.ItemTemplate>
+                            <DataTemplate>
+                                <Border Classes="gameCard">
+                                    <Grid ColumnDefinitions="auto, *, auto">
+                                        <StackPanel Grid.Column="0" Orientation="Horizontal" Spacing="8">
+                                            <Border CornerRadius="8" ClipToBounds="True">
+                                                <Image Source="{Binding Icon}" Stretch="UniformToFill" />
+                                            </Border>
+                                            <TextBlock Text="{Binding Directory.Name}" FontSize="16" FontWeight="Bold" Foreground="{DynamicResource Theme.TextPrimaryBrush}" VerticalAlignment="Center"/>
+                                            <TextBlock Text="{Binding Source}" FontSize="12" Foreground="{DynamicResource Theme.AccentEndBrush}" FontWeight="SemiBold" VerticalAlignment="Center"/>
+                                        </StackPanel>
 
-                <Button
-                    Classes="secondary"
-                    Content="{Binding Source={x:Static loc:LocalizationService.Instance}, Path=[InstallMelonLoaderAuto]}"
-                    IsVisible="{Binding !IsMelonLoaderValid}"
-                    IsEnabled="{Binding !IsInstallingMelonLoader}"
-                    Command="{Binding InstallMelonLoaderCommand}"
-                    HorizontalAlignment="Stretch"
-                    HorizontalContentAlignment="Center"/>
+                                        <Button
+                                            Grid.Column="2"
+                                            Classes="secondary"
+                                            Content="{Binding Source={x:Static loc:LocalizationService.Instance}, Path=[SelectFolder]}"
+                                            Command="{Binding $parent[UserControl].DataContext.SelectSuggestedFolderCommand}"
+                                            CommandParameter="{Binding}"/>
+                                    </Grid>
+                                </Border>
+                            </DataTemplate>
+                        </ItemsControl.ItemTemplate>
+                    </ItemsControl>
+
+                    <Button
+                        Classes="primary"
+                        Content="{Binding Source={x:Static loc:LocalizationService.Instance}, Path=[ChooseGameFolderManually]}"
+                        Command="{Binding SelectGameFolderCommand}"
+                        HorizontalAlignment="Stretch"
+                        HorizontalContentAlignment="Center"
+                        Opacity="50" />
+
+                </StackPanel>
+
+                <StackPanel Spacing="8">
+                    <Border
+                        IsVisible="{Binding MelonLoaderStatusText, Converter={x:Static StringConverters.IsNotNullOrEmpty}}"
+                        Background="#12000000"
+                        CornerRadius="10"
+                        Padding="14,10">
+                        <StackPanel Spacing="4">
+                            <TextBlock
+                                Text="{Binding MelonLoaderStatusText}"
+                                FontSize="13"
+                                FontWeight="SemiBold"
+                                TextAlignment="Center"
+                                Foreground="{DynamicResource Theme.TextPrimaryBrush}"/>
+
+                            <TextBlock
+                                Text="{Binding GamePath}"
+                                FontSize="12"
+                                TextWrapping="Wrap"
+                                TextAlignment="Center"
+                                Foreground="{DynamicResource Theme.TextSecondaryBrush}"/>
+                        </StackPanel>
+                    </Border>
+
+                    <Button
+                        Classes="secondary"
+                        Content="{Binding Source={x:Static loc:LocalizationService.Instance}, Path=[InstallMelonLoaderAuto]}"
+                        IsVisible="{Binding !IsMelonLoaderValid}"
+                        IsEnabled="{Binding !IsInstallingMelonLoader}"
+                        Command="{Binding InstallMelonLoaderCommand}"
+                        HorizontalAlignment="Stretch"
+                        HorizontalContentAlignment="Center"/>
+
+                </StackPanel>
 
                 <TextBlock
                     IsVisible="{Binding IsInstallingMelonLoader}"

@@ -87,6 +87,15 @@
         <Setter Property="BorderThickness" Value="1"/>
     </Style>
 
+    <!-- Game install card items -->
+    <Style Selector="Border.gameCard">
+        <Setter Property="Background" Value="{DynamicResource Theme.ModCardBackgroundBrush}"/>
+        <Setter Property="CornerRadius" Value="12"/>
+        <Setter Property="Padding" Value="8"/>
+        <Setter Property="BorderBrush" Value="{DynamicResource Theme.ModCardBorderBrush}"/>
+        <Setter Property="BorderThickness" Value="1"/>
+    </Style>
+
     <!-- Expanded view -->
     <Style Selector="Button.cardLink">
         <Setter Property="Background" Value="Transparent"/>
