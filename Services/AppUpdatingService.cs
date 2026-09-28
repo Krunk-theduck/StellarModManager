@@ -11,7 +11,7 @@ namespace StellarModManager.Services;
 
 public class AppUpdatingService
 {
-    private const string RepoApi = "https://api.github.com/repos/jollyname/StellarModManager/releases/latest";
+    private const string RepoApi = "https://api.github.com/repos/Krunk-theduck/StellarModManager/releases/latest";
 
     public async Task<UpdateInfo?> CheckAsync()
     {

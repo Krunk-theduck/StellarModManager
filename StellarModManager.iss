@@ -3,9 +3,9 @@
 ; Non-commercial use only
 
 #define MyAppName "StellarModManager"
-#define MyAppVersion "1.1.0"
-#define MyAppPublisher "Jollyname"
-#define MyAppURL "https://github.com/jollyname/StellarModManager"
+#define MyAppVersion "1.3.0"
+#define MyAppPublisher "Krunk"
+#define MyAppURL "https://github.com/Krunk-theduck/StellarModManager"
 #define MyAppExeName "StellarModManager.exe"
 
 [Setup]
@@ -38,7 +38,7 @@ InfoAfterFile=App\PostInfo.txt
 ; Remove the following line to run in administrative install mode (install for all users).
 PrivilegesRequired=lowest
 PrivilegesRequiredOverridesAllowed=dialog
-OutputBaseFilename=StellarModManager_1.1.0_Setup
+OutputBaseFilename=StellarModManager_{#MyAppVersion}_Setup
 SetupIconFile=App\icon.ico
 SolidCompression=yes
 WizardStyle=modern dynamic
