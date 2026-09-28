@@ -46,6 +46,33 @@
         <Setter Property="Background" Value="{DynamicResource Theme.AccentPressedBrush}"/>
     </Style>
 
+    <Style Selector="ComboBox.secondary">
+        <Setter Property="Background" Value="{DynamicResource Theme.AccentSolidBrush}"/>
+        <Setter Property="Foreground" Value="White"/>
+        <Setter Property="FontWeight" Value="SemiBold"/>
+        <Setter Property="FontSize" Value="12"/>
+        <Setter Property="CornerRadius" Value="8"/>
+        <Setter Property="BorderThickness" Value="0"/>
+        <Setter Property="MinHeight" Value="0"/>
+        <Setter Property="Padding" Value="14,7,8,7"/>
+        <Setter Property="VerticalAlignment" Value="Center"/>
+    </Style>
+    <Style Selector="ComboBox.secondary /template/ PathIcon#DropDownGlyph">
+        <Setter Property="Foreground" Value="White"/>
+    </Style>
+    <Style Selector="ComboBox.secondary:pointerover /template/ Border#Background">
+        <Setter Property="Background" Value="{DynamicResource Theme.AccentHoverBrush}"/>
+    </Style>
+    <Style Selector="ComboBox.secondary:pressed /template/ Border#Background">
+        <Setter Property="Background" Value="{DynamicResource Theme.AccentPressedBrush}"/>
+    </Style>
+    <Style Selector="ComboBox.secondary:pointerover /template/ ContentPresenter#ContentPresenter">
+        <Setter Property="Foreground" Value="White"/>
+    </Style>
+    <Style Selector="ComboBox.secondary:pointerover /template/ PathIcon#DropDownGlyph">
+        <Setter Property="Foreground" Value="White"/>
+    </Style>
+
     <Style Selector="TabControl">
         <Setter Property="Padding" Value="0"/>
     </Style>

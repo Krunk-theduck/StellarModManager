@@ -14,6 +14,7 @@
                 VerticalAlignment="Center" />
             <ComboBox
                 Grid.Column="1"
+                Classes="secondary"
                 Margin="0,0,8,0"
                 SelectedIndex="{Binding SortIndex}">
                 <ComboBoxItem Content="Most downloaded" />
